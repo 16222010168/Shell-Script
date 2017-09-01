@@ -19,6 +19,7 @@ check_errpt()
 		echo "There's no error log today.\n"
 		echo "-------------------------------- \n\n\n"
 	fi
+	exit 0
 }
 
 check_fs()
@@ -33,6 +34,7 @@ check_fs()
 		echo "$FILE"
 		echo "-------------------------------- \n"
 	fi
+	exit 0
 }
 
 check_disk()
@@ -47,6 +49,7 @@ check_disk()
 		echo "$DISK"
 		echo "-------------------------------- \n\n\n"
 	fi
+	exit 0
 }
 
 check_adapter()
@@ -61,6 +64,7 @@ check_adapter()
 		echo "$ADAPTER"
 		echo "-------------------------------- \n\n\n"
 	fi
+	exit 0
 }
 
 check_processor()
@@ -75,6 +79,7 @@ check_processor()
 		echo "$PROCESSOR"
 		echo "-------------------------------- \n\n\n"
 	fi
+	exit 0
 }
 
 check_vgmirror()
@@ -89,6 +94,23 @@ check_vgmirror()
 		echo "$MIRRORVG"
 		echo "-------------------------------- \n\n\n"
 	fi
+	exit 0
+}
+
+check_ps()
+{
+
+PS=`lsps -s|grep -Ev Total|sed 's/%//'|awk '{if ($2 > 70) print $0}'`
+if [ -z "$PS" ];then
+  echo "There's no PS larger than 70%."
+  echo "-------------------------------- \n"
+else
+  echo "Paging space larger than 70%, pls pay attention!"
+  echo "$PS"
+  echo "-------------------------------- \n"
+fi
+exit 0
+
 }
 
 ################################################MAIN##################################################################
@@ -99,7 +121,5 @@ check_adapter
 check_fs
 check_processor
 check_vgmirror
+check_ps
 #	/usr/sbin/cluster/clstat -o     #Check the POWERHA status.
-
-
-
