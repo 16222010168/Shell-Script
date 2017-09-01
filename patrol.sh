@@ -5,7 +5,7 @@
 #CREATE_DATE:2016/12/30
 #
 #patrol.sh
-#All the 'exit 0' should be delete, or the script will be stop in the errpt check, pls pay attention.
+#
 
 check_errpt()
 {
@@ -19,7 +19,7 @@ check_errpt()
 		echo "There's no error log today.\n"
 		echo "-------------------------------- \n\n\n"
 	fi
-	exit 0
+	
 }
 
 check_fs()
@@ -34,7 +34,7 @@ check_fs()
 		echo "$FILE"
 		echo "-------------------------------- \n"
 	fi
-	exit 0
+
 }
 
 check_disk()
@@ -49,7 +49,7 @@ check_disk()
 		echo "$DISK"
 		echo "-------------------------------- \n\n\n"
 	fi
-	exit 0
+	
 }
 
 check_adapter()
@@ -64,7 +64,7 @@ check_adapter()
 		echo "$ADAPTER"
 		echo "-------------------------------- \n\n\n"
 	fi
-	exit 0
+	
 }
 
 check_processor()
@@ -79,7 +79,7 @@ check_processor()
 		echo "$PROCESSOR"
 		echo "-------------------------------- \n\n\n"
 	fi
-	exit 0
+	
 }
 
 check_vgmirror()
@@ -94,7 +94,7 @@ check_vgmirror()
 		echo "$MIRRORVG"
 		echo "-------------------------------- \n\n\n"
 	fi
-	exit 0
+	
 }
 
 check_ps()
@@ -109,7 +109,6 @@ else
   echo "$PS"
   echo "-------------------------------- \n"
 fi
-exit 0
 
 }
 
