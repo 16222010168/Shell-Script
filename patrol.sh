@@ -5,7 +5,7 @@
 #CREATE_DATE:2016/12/30
 #
 #patrol.sh
-#
+#All the 'exit 0' should be delete, or the script will be stop in the errpt check, pls pay attention.
 
 check_errpt()
 {
