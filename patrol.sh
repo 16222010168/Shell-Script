@@ -10,9 +10,11 @@
 check_errpt()
 {
 #check the error log today
+MD=`date +%m%d`
+YEAR=`date +%y`
 echo "\n"
 echo "-----------Error Information-------------"
-ERRPT=$(errpt|grep `date +%m%d%H%M%y`)
+ERRPT=$(errpt|grep "$MD....$YEAR")
 if [ -n "$ERRPT" ];then
   echo "System call out errorlog, pls pay attention!\n\n"
   echo "$ERRPT"
