@@ -1,3 +1,4 @@
+# more patrol.sh
 #!/usr/bin/ksh 
 #
 #AUTHOR: CaoYuchi
@@ -121,6 +122,20 @@ fi
 
 }
 
+check_rootvg_pv()
+{
+echo "--------------------------roovg pv Information-------------------------"
+rootvg_pv=`lsvg -p rootvg|sed '1,2d'|awk '{if ($2 != "active") print $0}'`
+if [ -z "$rootvg_pv" ];then
+    echo "no missing pv"
+        echo "-------------------------------- \n"
+else
+    echo "pv missing, pay attention"
+        echo "$rootvg_pv"
+        echo "-------------------------------- \n"
+fi
+}
+
 ################################################MAIN##################################################################
 echo "\n"
 echo "CHECKING, PLS WAIT... "
@@ -131,4 +146,4 @@ check_fs|tee -a /tmp/Patrolog/`date +%m%d%H%M%y`.log
 check_processor|tee -a /tmp/Patrolog/`date +%m%d%H%M%y`.log
 check_vgmirror|tee -a /tmp/Patrolog/`date +%m%d%H%M%y`.log
 check_ps|tee -a /tmp/Patrolog/`date +%m%d%H%M%y`.log
-#       /usr/sbin/cluster/clstat -o     #Check the POWERHA status.
+check_rootvg_pv|tee -a /tmp/Patrolog/`date +%m%d%H%M%y`.log
